@@ -1,0 +1,117 @@
+\chapter{静电学}
+
+% \epigraph{我知道这是静电学的内容，但我就是要放在这里，你气不气}{——ZexHexoft\\于码字码疯时的话语}
+
+\section{静电场}
+
+\subsection{真空中的静电场}
+
+\begin{definition}[静电场]
+    \begin{equation}
+        \mathbf{E}=\frac{1}{4\pi \varepsilon _0}\int_V{\frac{\rho \left( \mathbf{r}' \right)}{\rcurs^2}\hrcurs\mathrm{d}\tau '}
+    \end{equation}
+\end{definition}
+
+\begin{theorem}[高斯定理]
+    \begin{gather}
+        \oint_S{\mathbf{E}\cdot \mathrm{d}\mathbf{a}}=\frac{Q}{\varepsilon _0}\\
+        \nabla \cdot \mathbf{E}=\frac{\rho}{\varepsilon _0}
+    \end{gather}
+\end{theorem}
+
+\begin{definition}[静电势]
+    \begin{equation}
+        V(\vec r):=-\int_O^r{\mathbf{E}\cdot \mathrm{d}\mathbf{l}}
+    \end{equation}
+\end{definition}
+
+\begin{corollary}
+    \begin{equation}
+        \vec E = - \nabla V
+    \end{equation}
+\end{corollary}
+
+\begin{definition}[泊松方程]
+    \begin{equation}
+        \nabla^2 V = - \frac{\rho}{\varepsilon_0} 
+    \end{equation}
+\end{definition}
+
+对无电荷区域，退化为
+
+\begin{definition}[拉普拉斯方程]
+    \begin{equation}
+        \nabla^2 V = 0
+    \end{equation}
+\end{definition}
+
+\begin{theorem}[边界条件]\label{boundary_statement}
+    \begin{gather}
+        \mathbf{E}_{\text{上}}-\mathbf{E}_{\text{下}}=\frac{\sigma}{\varepsilon _0}\hat{\mathbf{n}}\\
+        \frac{\partial V_{\text{上}}}{\partial n}-\frac{\partial V_{\text{下}}}{\partial n}=-\frac{\sigma}{\varepsilon _0}
+    \end{gather}
+\end{theorem}
+
+我们熟知分立电荷的能量
+
+\begin{theorem}
+    \begin{equation}
+        W=\frac{1}{2}\sum_{i=1}^n{q_iV\left( \mathbf{r}_i \right)}
+    \end{equation}
+\end{theorem}
+
+接下来我们计算连续电荷分布的能量\footnote{注意\cref{eq:diff_rule3}的逆运用}
+
+\begin{theorem}
+    \begin{align}
+        W&=\frac{1}{2}\int{\rho V\mathrm{d}\tau}
+        \\
+        &=\frac{\varepsilon _0}{2}\int{\left( \nabla \cdot \mathbf{E} \right) V\mathrm{d}\tau}\nonumber
+        \\
+        &=\frac{\varepsilon _0}{2}\int{\left[ \nabla \cdot \left( V\mathbf{E} \right) -\mathbf{E}\cdot \nabla V \right] \mathrm{d}\tau}\nonumber
+        \\
+        &=\frac{\varepsilon _0}{2}\left( \int_V{E^2\mathrm{d}\tau}+\oint_S{V\mathbf{E}\cdot \mathrm{d}\mathbf{a}} \right) \nonumber
+        \\
+        &=\frac{\varepsilon _0}{2}\int_V{E^2\mathrm{d}\tau}
+    \end{align}
+\end{theorem}
+
+\subsection{介质中的静电场}
+
+考虑线性电介质:
+
+\begin{theorem}[束缚电荷]
+    \begin{gather}
+        Q_b:=\int{\mathrm{d}^3\mathbf{x}\rho _b}=-\oint{\mathbf{P}\cdot \mathrm{d}\mathbf{a}}\\
+        \rho_b = -\nabla \cdot \vec P\\
+        \sigma_b = \hat{\vec n}\cdot \vec P
+    \end{gather}
+\end{theorem}
+
+由连续性方程
+
+$$
+\frac{\partial \rho_b}{\partial t}+\nabla \cdot \vec J_b = 0
+$$
+
+我们有如下推论: 
+
+\begin{corollary}[束缚电流密度]
+    \begin{equation}
+        \vec J_b = \frac{\partial \vec P}{\partial t}
+    \end{equation}
+\end{corollary}
+
+\section{导体}
+
+我们熟知导体有以下性质：
+
+\begin{itemize}
+    \item 内部$\vec E = 0$
+    \item 内部$\rho = 0$
+    \item 净电荷只分布在表面
+    \item 是一个等势体
+    \item 电场垂直于导体表面
+\end{itemize}
+
+

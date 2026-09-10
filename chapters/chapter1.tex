@@ -52,22 +52,22 @@
 
 \begin{theorem}[微分的积规则]
     \begin{equation}
-        \nabla(fg) = f\nabla g+g\nabla f
+        \nabla(fg) = f\nabla g+g\nabla f \label{eq:diff_rule1}
     \end{equation}
     \begin{equation}
-        \nabla(\vec A \cdot \vec B) = \vec A \times (\nabla \times \vec B) + \vec B \times (\nabla \times \vec A) + (\vec A \cdot \nabla)\vec B+ (\vec B \cdot \nabla)\vec A \label{eq:example2}
+        \nabla(\vec A \cdot \vec B) = \vec A \times (\nabla \times \vec B) + \vec B \times (\nabla \times \vec A) + (\vec A \cdot \nabla)\vec B+ (\vec B \cdot \nabla)\vec A \label{eq:diff_rule2}
     \end{equation}
     \begin{equation}
-        \nabla \cdot \left( f\mathbf{A} \right) =f\left( \nabla \cdot \mathbf{A} \right) +\mathbf{A}\cdot \nabla f
+        \nabla \cdot \left( f\mathbf{A} \right) =f\left( \nabla \cdot \mathbf{A} \right) +\mathbf{A}\cdot \nabla f\label{eq:diff_rule3}
     \end{equation}
     \begin{equation}
-        \nabla \cdot \left( \mathbf{A}\times \mathbf{B} \right) =\mathbf{B}\cdot \left( \nabla \times \mathbf{A} \right) -\mathbf{A}\cdot \left( \nabla \times \mathbf{B} \right) 
+        \nabla \cdot \left( \mathbf{A}\times \mathbf{B} \right) =\mathbf{B}\cdot \left( \nabla \times \mathbf{A} \right) -\mathbf{A}\cdot \left( \nabla \times \mathbf{B} \right) \label{eq:diff_rule4}
     \end{equation}
     \begin{equation}
-        \nabla \times \left( f\mathbf{A} \right) =f\left( \nabla \times \mathbf{A} \right) -\mathbf{A}\times \left( \nabla f \right) 
+        \nabla \times \left( f\mathbf{A} \right) =f\left( \nabla \times \mathbf{A} \right) -\mathbf{A}\times \left( \nabla f \right) \label{eq:diff_rule5}
     \end{equation}
     \begin{equation}
-        \nabla \times \left( \mathbf{A}\times \mathbf{B} \right) =\left( \mathbf{B}\cdot \nabla \right) \mathbf{A}-\left( \mathbf{A}\cdot \nabla \right) \mathbf{B}+\mathbf{A}\left( \nabla \cdot \mathbf{B} \right) -\mathbf{B}\left( \nabla \cdot \mathbf{A} \right) \label{eq:example1}
+        \nabla \times \left( \mathbf{A}\times \mathbf{B} \right) =\left( \mathbf{B}\cdot \nabla \right) \mathbf{A}-\left( \mathbf{A}\cdot \nabla \right) \mathbf{B}+\mathbf{A}\left( \nabla \cdot \mathbf{B} \right) -\mathbf{B}\left( \nabla \cdot \mathbf{A} \right) \label{eq:diff_rule6}
     \end{equation}
 \end{theorem}
 
@@ -81,7 +81,7 @@
     $\nabla_\vec{A}$表示只作用于向量$\vec{A}$的算符.
 \end{definition}
 
-这里以\cref{eq:example1}为例子
+这里以\cref{eq:diff_rule6}为例子
 
 \begin{example}
     \begin{align*}
@@ -95,7 +95,7 @@
     \end{align*}
 \end{example}
 
-再举一个\cref{eq:example2}的例子(注意对\cref{BAC-CAB}的逆运用)
+再举一个\cref{eq:diff_rule2}的例子(注意对\cref{BAC-CAB}的逆运用)
 
 \begin{example}
     \begin{align*}
@@ -182,4 +182,4 @@ $$
     \end{equation}
 \end{corollary}
 
-接下来的定理要么我在这里补充\footnote{毕竟还没完工}，或者我会在后面的物理中穿插\footnote{按照俞熹老师的说, 这是"做中学"}.
+接下来的定理要么我在这里补充\footnote{毕竟还没完工}，或者我会在后面的物理中穿插\footnote{按照俞熹老师的话说, 这是“做中学”}.
