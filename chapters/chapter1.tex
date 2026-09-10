@@ -1,0 +1,82 @@
+\chapter{电动力学预备班}
+\epigraph{你应该已经学过微积分和矢量分析了, 对吧?}{——ZexHexoft}
+这部分主讲常用矢量分析和一些相关的定理及公式.\footnote{事实上我这里非常推荐阅读《电磁学(拓展篇)》中的专题15, 接下来也会引用部分内容}
+
+\section{常用的矢量恒等式}
+
+\begin{theorem}[标量三重积]
+    \begin{equation}
+        \vec A\cdot(\vec B\times\vec C)=\vec B\cdot(\vec C\times\vec A)=\vec C\cdot(\vec A\times\vec B)
+    \end{equation}
+\end{theorem}
+
+\begin{theorem}[矢量三重积(BAC-CAB规则\footnote{英文中与BACK-CAB同音, 即后面的出租车})]
+        \begin{equation}
+            \vec A\times(\vec B\times\vec C)=\vec B(\vec A\cdot\vec C)-\vec C(\vec A\cdot\vec B) \label{BAC-CAB}
+        \end{equation}
+\end{theorem}
+
+\section{矢量的微分}
+
+\begin{definition}[$\nabla$算子]
+    \begin{equation}
+        \nabla := \hat{\mathbf{x}}\frac{\partial}{\partial x}+\hat{\mathbf{y}}\frac{\partial}{\partial y}+\hat{\mathbf{z}}\frac{\partial}{\partial z}
+    \end{equation}
+\end{definition}
+
+\begin{theorem}[微分的积规则]
+    \begin{equation}
+        \nabla(fg) = f\nabla g+g\nabla f
+    \end{equation}
+    \begin{equation}
+        \nabla(\vec A \cdot \vec B) = \vec A \times (\nabla \times \vec B) + \vec B \times (\nabla \times \vec A) + (\vec A \cdot \nabla)\vec B+ (\vec B \cdot \nabla)\vec A \label{eq:example2}
+    \end{equation}
+    \begin{equation}
+        \nabla \cdot \left( f\mathbf{A} \right) =f\left( \nabla \cdot \mathbf{A} \right) +\mathbf{A}\cdot \nabla f
+    \end{equation}
+    \begin{equation}
+        \nabla \cdot \left( \mathbf{A}\times \mathbf{B} \right) =\mathbf{B}\cdot \left( \nabla \times \mathbf{A} \right) -\mathbf{A}\cdot \left( \nabla \times \mathbf{B} \right) 
+    \end{equation}
+    \begin{equation}
+        \nabla \times \left( f\mathbf{A} \right) =f\left( \nabla \times \mathbf{A} \right) -\mathbf{A}\times \left( \nabla f \right) 
+    \end{equation}
+    \begin{equation}
+        \nabla \times \left( \mathbf{A}\times \mathbf{B} \right) =\left( \mathbf{B}\cdot \nabla \right) \mathbf{A}-\left( \mathbf{A}\cdot \nabla \right) \mathbf{B}+\mathbf{A}\left( \nabla \cdot \mathbf{B} \right) -\mathbf{B}\left( \nabla \cdot \mathbf{A} \right) \label{eq:example1}
+    \end{equation}
+\end{theorem}
+
+说实话，这些等式又臭又长，很多时候难以记住.
+
+我在这里提供一种摘自《电磁学(拓展篇)》中的专题15中选读15-10的一种记忆方法供大家参考.
+
+首先简记一种符号$\nabla_\vec{A}$(可以与一元微积分中的$\frac{\mathrm{d}f}{\mathrm{d}x}\frac{\partial}{\partial f},\frac{\mathrm{d}g}{\mathrm{d}x}\frac{\partial}{\partial g}$等对应)
+
+\begin{definition}
+    $\nabla_\vec{A}$表示只作用于向量$\vec{A}$的算符.
+\end{definition}
+
+这里以\cref{eq:example1}为例子
+
+\begin{example}
+    \begin{align*}
+        \nabla \times \left( \mathbf{A}\times \mathbf{B} \right) &=\nabla _{\mathbf{A}}\times \left( \mathbf{A}\times \mathbf{B} \right) +\nabla _{\mathbf{B}}\times \left( \mathbf{A}\times \mathbf{B} \right) 
+        \\
+        &=\mathbf{A}\left( \nabla _{\mathbf{A}}\cdot \mathbf{B} \right) -\mathbf{B}\left( \nabla _{\mathbf{A}}\cdot \mathbf{A} \right) +\mathbf{A}\left( \nabla _{\mathbf{B}}\cdot \mathbf{B} \right) -\mathbf{B}\left( \nabla _{\mathbf{B}}\cdot \mathbf{A} \right)
+        \\
+        &=\left( \mathbf{B}\cdot \nabla _{\mathbf{A}} \right) \mathbf{A}-\mathbf{B}\left( \nabla _{\mathbf{A}}\cdot \mathbf{A} \right) +\mathbf{A}\left( \nabla _{\mathbf{B}}\cdot \mathbf{B} \right) -\left( \mathbf{A}\cdot \nabla _{\mathbf{B}} \right) \mathbf{B}
+        \\
+        &=\left( \mathbf{B}\cdot \nabla \right) \mathbf{A}-\mathbf{B}\left( \nabla \cdot \mathbf{A} \right) +\mathbf{A}\left( \nabla \cdot \mathbf{B} \right) -\left( \mathbf{A}\cdot \nabla \right) \mathbf{B}
+    \end{align*}
+\end{example}
+
+再举一个\cref{eq:example2}的例子(注意对\cref{BAC-CAB}的逆运用)
+
+\begin{example}
+    \begin{align*}
+        \nabla \left( \mathbf{A}\cdot \mathbf{B} \right) &=\nabla _{\mathbf{A}}\left( \mathbf{A}\cdot \mathbf{B} \right) +\nabla _{\mathbf{B}}\left( \mathbf{A}\cdot \mathbf{B} \right)
+        \\
+        &=\mathbf{B}\times \left( \nabla _{\mathbf{A}}\times \mathbf{A} \right) +\mathbf{A}\left( \mathbf{B}\cdot \nabla _{\mathbf{A}} \right) +\mathbf{A}\times \left( \nabla _{\mathbf{B}}\times \mathbf{B} \right) +\mathbf{B}\left( \mathbf{A}\cdot \nabla _{\mathbf{B}} \right) 
+        \\
+        &=\mathbf{B}\times \left( \nabla \times \mathbf{A} \right) +\left( \mathbf{B}\cdot \nabla \right) \mathbf{A}+\mathbf{A}\times \left( \nabla \times \mathbf{B} \right) +\left( \mathbf{A}\cdot \nabla \right) \mathbf{B}
+    \end{align*}
+\end{example}
