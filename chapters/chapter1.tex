@@ -10,9 +10,9 @@
     \end{equation}
 \end{theorem}
 
-\begin{theorem}[矢量三重积(BAC-CAB规则\footnote{英文中与BACK-CAB同音, 即后面的出租车})]
+\begin{theorem}[矢量三重积(BAC-CAB规则\footnote{英文中与BACK-CAB同音, 即后面的出租车})] \label{BAC-CAB}
         \begin{equation}
-            \vec A\times(\vec B\times\vec C)=\vec B(\vec A\cdot\vec C)-\vec C(\vec A\cdot\vec B) \label{BAC-CAB}
+            \vec A\times(\vec B\times\vec C)=\vec B(\vec A\cdot\vec C)-\vec C(\vec A\cdot\vec B)
         \end{equation}
 \end{theorem}
 
@@ -23,6 +23,28 @@
         \nabla := \hat{\mathbf{x}}\frac{\partial}{\partial x}+\hat{\mathbf{y}}\frac{\partial}{\partial y}+\hat{\mathbf{z}}\frac{\partial}{\partial z}
     \end{equation}
 \end{definition}
+
+\begin{theorem}[梯度]
+    \begin{equation}
+        \nabla T := \frac{\partial T}{\partial x}\hat{\mathbf{x}}+\frac{\partial T}{\partial y}\hat{\mathbf{y}}+\frac{\partial T}{\partial z}\hat{\mathbf{z}}
+    \end{equation}
+\end{theorem}
+
+\begin{theorem}[散度]
+    \begin{equation}
+        \nabla \cdot \mathbf{v}=\frac{\partial v_x}{\partial x}+\frac{\partial v_y}{\partial y}+\frac{\partial v_z}{\partial z}
+    \end{equation}
+\end{theorem}
+
+\begin{theorem}[旋度]\footnote{都学到这里了，你会计算这个的，对吧? 那我就不展开了.}
+    \begin{equation}
+        \nabla \times \mathbf{v}=\left| \begin{matrix}
+            \hat{\mathbf{x}}&		\hat{\mathbf{y}}&		\hat{\mathbf{z}}\\
+            \frac{\partial}{\partial x}&		\frac{\partial}{\partial y}&		\frac{\partial}{\partial z}\\
+            v_x&		v_y&		v_z\\
+        \end{matrix} \right|
+    \end{equation}
+\end{theorem}
 
 \begin{theorem}[微分的积规则]
     \begin{equation}
