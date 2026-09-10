@@ -18,6 +18,8 @@
 
 \section{矢量的微分}
 
+\subsection{一阶微分}
+
 \begin{definition}[$\nabla$算子]
     \begin{equation}
         \nabla := \hat{\mathbf{x}}\frac{\partial}{\partial x}+\hat{\mathbf{y}}\frac{\partial}{\partial y}+\hat{\mathbf{z}}\frac{\partial}{\partial z}
@@ -35,6 +37,8 @@
         \nabla \cdot \mathbf{v}=\frac{\partial v_x}{\partial x}+\frac{\partial v_y}{\partial y}+\frac{\partial v_z}{\partial z}
     \end{equation}
 \end{theorem}
+
+在\cref{sec:integrationOfVector}中，我们会看到他们名字的意义.
 
 \begin{theorem}[旋度]\footnote{都学到这里了，你会计算这个的，对吧? 那我就不展开了.}
     \begin{equation}
@@ -102,3 +106,40 @@
         &=\mathbf{B}\times \left( \nabla \times \mathbf{A} \right) +\left( \mathbf{B}\cdot \nabla \right) \mathbf{A}+\mathbf{A}\times \left( \nabla \times \mathbf{B} \right) +\left( \mathbf{A}\cdot \nabla \right) \mathbf{B}
     \end{align*}
 \end{example}
+
+\subsection{常用的二阶微分}
+
+\begin{definition}[拉普拉斯算符]\footnote{似乎有点反直觉的是，拉普拉斯算符既可以作用在标量上，也可以作用在矢量上.}
+    \begin{equation}
+        \nabla^2 := \nabla \cdot \nabla = \frac{\partial ^2}{\partial x^2}+\frac{\partial ^2}{\partial y^2}+\frac{\partial ^2}{\partial z^2}
+    \end{equation}
+\end{definition}
+
+\begin{theorem}
+    \begin{gather}
+        \nabla \times \left( \nabla T \right) =0\\
+        \nabla \cdot \left( \nabla \times \mathbf{v} \right) =0\\
+        \nabla \times \left( \nabla \times \mathbf{v} \right) =\nabla \left( \nabla \cdot \mathbf{v} \right) -\nabla ^2\mathbf{v}
+    \end{gather}
+\end{theorem}
+
+
+\section{矢量的积分}\label{sec:integrationOfVector}
+
+\begin{theorem}[梯度定理]
+    \begin{equation}
+        \int_a^b{\left( \nabla T \right) \cdot \mathrm{d}\mathbf{l}}=T\left( b \right) -T\left( a \right) 
+    \end{equation}
+\end{theorem}
+
+\begin{theorem}[散度定理]
+    \begin{equation}
+        \int_V{\left( \nabla \cdot \mathbf{v} \right) \mathrm{d}\tau}=\oint_S{\mathbf{v}\cdot \mathrm{d}\mathbf{a}}
+    \end{equation}
+\end{theorem}
+
+\begin{theorem}[旋度定理/斯托克斯定理]\footnote{这里的$\partial S$表示$S$的边界.}\footnote{之所以在积分号上用逆时针的圆圈，是为了强调右手规则.}
+    \begin{equation}
+        \int_S{\left( \nabla \times \mathbf{v} \right) \cdot \mathrm{d}\mathbf{a}}=\ointctrclockwise_{\partial S}{\mathbf{v}\cdot \mathrm{d}\mathbf{l}}
+    \end{equation}
+\end{theorem}

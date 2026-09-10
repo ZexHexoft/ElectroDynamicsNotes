@@ -1,6 +1,6 @@
 %!LW recipe=latexmk (xelatex)
 \documentclass[12pt, a4paper, oneside]{ctexbook}
-\usepackage{amsmath, amsthm, amssymb, bm, graphicx, hyperref, mathrsfs, epigraph, footnote, cleveref}
+\usepackage{amsmath, amsthm, amssymb, bm, graphicx, hyperref, mathrsfs, epigraph, footnote, cleveref, esint}
 \usepackage[backend=biber, style=gb7714-2015]{biblatex}
 
 % \addbibresource{myrefs.bib}
@@ -37,6 +37,10 @@
 \Crefname{equation}{式}{式}
 \crefname{theorem}{定理}{定理}
 \Crefname{theorem}{定理}{定理}
+\crefname{section}{}{}
+\Crefname{section}{}{}
+
+\crefformat{section}{\textbf{#2#1#3}部分}
 
 \crefformat{equation}{式#2(#1)#3} % 这里的几个格式非常有趣
 % \crefformat{equation}{#2(#1)#3}
