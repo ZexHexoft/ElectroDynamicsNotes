@@ -143,3 +143,43 @@
         \int_S{\left( \nabla \times \mathbf{v} \right) \cdot \mathrm{d}\mathbf{a}}=\ointctrclockwise_{\partial S}{\mathbf{v}\cdot \mathrm{d}\mathbf{l}}
     \end{equation}
 \end{theorem}
+
+\section{狄拉克函数}
+
+\begin{definition}[狄拉克$\delta$函数]
+    \begin{gather}
+        \delta \left( x \right) =\begin{cases}
+            0&x\ne 0\\
+            +\infty &x=0\\
+        \end{cases}\\
+        \int_{-\infty}^{+\infty}{\delta \left( x \right) \mathrm{d}x}=1
+    \end{gather}    
+\end{definition}
+
+\begin{definition}[三维狄拉克$\delta$函数]
+    \begin{equation}
+        \delta ^3\left( \mathbf{r} \right) =\delta \left( x \right) \delta \left( y \right) \delta \left( z \right) 
+    \end{equation}
+\end{definition}
+
+\begin{theorem}
+    \begin{equation}
+        \nabla \cdot \left( \frac{\hrcurs}{\rcurs^2} \right) =4\pi \delta ^3\left( \brcurs \right) 
+    \end{equation}
+\end{theorem}
+
+由于
+
+$$
+\nabla \left( \frac{1}{r} \right) =-\frac{\hat{\mathbf{r}}}{r^2}
+$$
+
+所以我们有
+
+\begin{corollary}
+    \begin{equation}
+        \nabla ^2\left( \frac{1}{r} \right) =-4\pi \delta ^3\left( \mathbf{r} \right) 
+    \end{equation}
+\end{corollary}
+
+接下来的定理要么我在这里补充\footnote{毕竟还没完工}，或者我会在后面的物理中穿插\footnote{按照俞熹老师的说, 这是"做中学"}.
