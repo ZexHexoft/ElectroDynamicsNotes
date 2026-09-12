@@ -134,13 +134,13 @@
 
 \begin{theorem}[散度定理]
     \begin{equation}
-        \int_V{\left( \nabla \cdot \mathbf{v} \right) \mathrm{d}\tau}=\oint_S{\mathbf{v}\cdot \mathrm{d}\mathbf{a}}
+        \int_V{\left( \nabla \cdot \mathbf{v} \right) \mathrm{d}\tau}=\oint_S{\mathbf{v}\cdot \mathrm{d}\mathbf{a}} \label{eq:Div}
     \end{equation}
 \end{theorem}
 
-\begin{theorem}[旋度定理/斯托克斯定理]\footnote{这里的$\partial S$表示$S$的边界.}\footnote{之所以在积分号上用逆时针的圆圈，是为了强调右手规则.}
+\begin{theorem}[旋度定理/斯托克斯定理]\footnote{这里的$\partial S$表示$S$的边界.}\footnote{之所以在积分号上用逆时针的圆圈，是为了强调右手规则.}\footnote{在微分几何中，会有一个与之同名的定理，这里的等式仅仅只是这个定理的一个特例.}
     \begin{equation}
-        \int_S{\left( \nabla \times \mathbf{v} \right) \cdot \mathrm{d}\mathbf{a}}=\ointctrclockwise_{\partial S}{\mathbf{v}\cdot \mathrm{d}\mathbf{l}}
+        \int_S{\left( \nabla \times \mathbf{v} \right) \cdot \mathrm{d}\mathbf{a}}=\ointctrclockwise_{\partial S}{\mathbf{v}\cdot \mathrm{d}\mathbf{l}}\label{eq:Curl}
     \end{equation}
 \end{theorem}
 
@@ -181,5 +181,260 @@ $$
         \nabla ^2\left( \frac{1}{r} \right) =-4\pi \delta ^3\left( \mathbf{r} \right) 
     \end{equation}
 \end{corollary}
+
+\section{曲线坐标系}
+
+\epigraph{这章可能有点拖沓, 没有兴趣的可以直接略过, 反正现在有AI.}{——ZexHexoft\\在OpenAI的人工智能解决N-S爆炸解问题后眩晕瘫坐的几天后}
+
+本部分主要对一般的曲线坐标系理论做一概述，并介绍常见的(正交)曲线坐标系.\footnote{相关内容主要摘自《电磁学(拓展篇)》15.8.1-15.8.3, 仍然推荐大家阅读此书}
+
+由于我本人对相关数学领域的无知和对物理图像的缺乏, 接下来的两章内容可能稍显冗长. 有需要的同学跳转到\cref{Chapter2}.
+
+\subsection{曲线坐标系}
+
+\begin{definition}[曲线坐标系]
+    在欧式坐标系内，凡不是直角坐标系的坐标系都称为曲线坐标系.
+\end{definition}
+
+\begin{definition}[曲线坐标系的坐标]
+    设P点在直角坐标系中的坐标为$x,y,z$,即
+    $$
+    \vec r = x\uvec x+y\uvec y +z\uvec z
+    $$
+    则在曲线坐标系$\{q_1,q_2,q_3\}$中, P点的位置由三个曲线坐标$q_1,q_2,q_3$描述. 且存在坐标变换关系:
+    $$
+    x=x(q_1,q_2,q_3),y=y(q_1,q_2,q_3),z=z(q_1,q_2,q_3)
+    $$
+    和反变换关系:
+    $$
+    q_1=q_1(x,y,z),q_2=q_2(x,y,z),q_2=q_2(x,y,z)
+    $$
+\end{definition}
+
+\begin{definition}[坐标基矢]
+    我们定义$\frac{\partial\vec r}{\partial q_i}$为$\boldsymbol{q}_i$\textbf{坐标基矢}.
+\end{definition}
+
+\begin{definition}[单位切矢和拉梅系数]
+    我们定义$\vec e_i$为$\frac{\partial\vec r}{\partial q_i}$方向上的单位矢量和标量$H_i$, 满足
+    \begin{equation}
+        \frac{\partial\vec r}{\partial q_i}= H_i\vec e_i \label{eq1}
+    \end{equation}
+    我们称标量$H_i$称为拉梅系数\footnote{注意拉梅系数不一定是常数，它是关于空间中某个点的常数.}.
+\end{definition}
+
+我们注意到
+\begin{equation}
+    \frac{\partial\vec r}{\partial q_i}\cdot \frac{\partial\vec r}{\partial q_i}= H_i^2
+\end{equation}
+
+又有
+\begin{equation}
+    \frac{\partial \boldsymbol{r}}{\partial q_i}=\boldsymbol{e}_{_x}\frac{\partial x}{\partial q_i}+\boldsymbol{e}_{_y}\frac{\partial y}{\partial q_i}+\boldsymbol{e}_{_z}\frac{\partial z}{\partial q_i}
+\end{equation}
+
+代入有
+
+\begin{corollary}
+    \begin{equation}
+        H_{_i}^{2}=\left( \frac{\partial x}{\partial q_{_i}} \right) ^2+\left( \frac{\partial y}{\partial q_{_i}} \right) ^2+\left( \frac{\partial z}{\partial q_{_i}} \right) ^2,\quad i=1,2,3
+    \end{equation}
+\end{corollary}
+
+接下来我们对$\nabla q_i$进行讨论.\footnote{这里将$q_i$视为空间中的标量场.}
+
+\begin{definition}
+    $\vec e_i^*$为与$\nabla q_i$同向的单位矢量, 即\footnote{事实上，考虑一个“等$q_i$面”, 则$\vec e_i^*$与该曲面在该点的切面垂直且指向$q_i$增加的方向(也即梯度的几何意义).}
+    \begin{equation}
+        \nabla q_i = h_i\vec e_i^*\label{eq2}
+    \end{equation}
+\end{definition}
+
+\begin{theorem}\footnote{式中的$\delta _{ij}$是克罗内克符号，满足$$\delta _{ij}=\begin{cases}1&i=j\\0&i\ne j\\\end{cases}$$}
+    \begin{equation}
+        \nabla q_i\cdot \frac{\partial r}{\partial q_j}=\delta _{ij} \label{eq}
+    \end{equation}
+\end{theorem}
+
+\begin{proof}
+    考虑$P$点的微小位移$(q_1,q_2,q_3)\to (q_1+\mathrm{d}q_1,q_2+\mathrm{d}q_2,q_3+\mathrm{d}q_3)$\\
+    一方面, 我们显然有
+    $$
+    \nabla q_i\cdot \mathrm{d}\mathbf{r}=\mathrm{d}q_i
+    $$
+    另一方面, 我们有
+    $$
+    \mathrm{d}\mathbf{r}=\frac{\partial \mathbf{r}}{\partial q_1}\rmd q_1+\frac{\partial \mathbf{r}}{\partial q_2}\rmd q_2+\frac{\partial \mathbf{r}}{\partial q_3}\rmd q_3
+    $$
+    所以我们得出
+    \begin{equation}
+        \mathrm{d}q_i=\left( \nabla q_i\cdot \frac{\partial \mathbf{r}}{\partial q_1} \right)\rmd q_1+\left( \nabla q_i\cdot \frac{\partial \mathbf{r}}{\partial q_2} \right)\rmd q_2+\left( \nabla q_i\cdot \frac{\partial \mathbf{r}}{\partial q_3} \right)\rmd q_3
+    \end{equation}
+    由于$\rmd q_i$和微小位移的任意性，不妨认为$i=1$,且$\rmd q_1 \ne 0, \rmd q_2 =\rmd q_3 = 0$
+
+    则上式给出
+    $$
+    \mathrm{d}q_1=\left( \nabla q_1\cdot \frac{\partial \mathbf{r}}{\partial q_1} \right) q_1
+    $$
+    
+    从而
+    \begin{equation}
+        \nabla q_1\cdot \frac{\partial \mathbf{r}}{\partial q_1} = 1
+    \end{equation}
+
+    倘若$i=1$且$\rmd q_2 \ne 0, \rmd q_1 =\rmd q_3 = 0$, 则可以导出
+
+    \begin{equation}
+        \nabla q_1\cdot \frac{\partial \mathbf{r}}{\partial q_2} = 0
+    \end{equation}
+    对其他情况同理.
+    归纳即得\cref{eq}
+\end{proof}
+
+\subsection{正交曲线坐标系}
+
+\begin{definition}[正交曲线坐标系]
+    如果曲线坐标系${q_1,q_2,q_3}$经过任一点的3条坐标先都两两垂直, 就称它为\textbf{正交曲线坐标系}.
+\end{definition}
+
+\begin{theorem}[正交曲线坐标系的判定]
+    以下三个条件与曲线坐标系${q_1,q_2,q_3}$为正交曲线坐标系等价.
+    \begin{subequations}
+        \begin{gather}
+            \uvec{e}_i \cdot \uvec{e}_j = 0,i\ne j\\ \label{eq3}
+            \uvec{e}_i^*= \uvec{e}_j,i=1,2,3\\
+            \uvec{e}_i^* \cdot \uvec{e}_j^* = 0,i\ne j
+        \end{gather}
+    \end{subequations}
+\end{theorem}
+
+\begin{theorem}
+    \begin{equation}
+        H_i h_i = 1
+    \end{equation}
+\end{theorem}
+
+\begin{proof}
+    利用\cref{eq1,eq2,eq3}即证.
+\end{proof}
+
+\begin{theorem}
+    \begin{equation}
+        \rmd l^2 = H_1^2\rmd q_1^2+ H_2^2\rmd q_2^2+ H_3^2\rmd q_3^2
+    \end{equation}
+\end{theorem}
+
+\begin{proof}
+    利用
+    $$
+    \mathrm{d}\mathbf{r}=\frac{\partial \mathbf{r}}{\partial q_1}\rmd q_1+\frac{\partial \mathbf{r}}{\partial q_2}\rmd q_2+\frac{\partial \mathbf{r}}{\partial q_3}\rmd q_3
+    $$
+    得到
+    $$
+    \rmd l^2 = \rmd \vec r\cdot \rmd \vec r= H_1^2\rmd q_1^2+ H_2^2\rmd q_2^2+ H_3^2\rmd q_3^2
+    $$
+    得证.
+\end{proof}
+
+\begin{theorem}[曲线坐标系中的梯度]
+    \begin{equation}
+        \nabla f = h_1\vec e_1^* \frac{\partial f}{\partial q_1}+h_2\vec e_2^* \frac{\partial f}{\partial q_2}+h_3\vec e_3^* \frac{\partial f}{\partial q_3}
+    \end{equation}
+\end{theorem}
+
+\begin{proof}
+    考虑到
+    \begin{align*}
+        \nabla f \cdot \rmd \vec r &= \rmd f \\
+        &= \frac{\partial f}{\partial q_1}\rmd q_1+\frac{\partial f}{\partial q_2}\rmd q_2+\frac{\partial f}{\partial q_3}\rmd q_3\\
+        &= \left( \frac{\partial f}{\partial q_1}\nabla q_1+\frac{\partial f}{\partial q_2}\nabla q_2+\frac{\partial f}{\partial q_3}\nabla q_3 \right) \cdot \rmd \vec r\\
+        &= \left( h_1\vec e_1^* \frac{\partial f}{\partial q_1}+h_2\vec e_2^* \frac{\partial f}{\partial q_2}+h_3\vec e_3^* \frac{\partial f}{\partial q_3} \right) \cdot \rmd \vec r\\
+    \end{align*}
+    得证.
+\end{proof}
+
+关于散度、旋度的证明中，我们会用到正交曲线坐标系的一些性质\footnote{我不太清楚怎么在一般曲线坐标系给出结果.}.
+
+\begin{theorem}[\textbf{正交}曲线坐标系中的散度]
+    记$\vec v$在正交曲面坐标系${q_1,q_2,q_3}$中的分量为$(v_1,v_2,v_3)$,则有
+    \begin{equation}
+        \nabla \cdot \vec{v} = \frac{1}{H_1 H_2 H_3} \left[ \frac{\partial\left(v_1 H_2 H_3\right) }{\partial q_1} +\frac{\partial\left(v_2 H_3 H_1\right) }{\partial q_2} +\frac{\partial\left(v_3 H_1 H_2\right) }{\partial q_3}\right]
+    \end{equation}
+\end{theorem}
+
+\begin{proof}
+    \noindent
+    对\cref{eq:Div}取极限, 我们给出散度的一般定义:
+    \begin{equation}
+        \nabla \cdot \mathbf{v}=\lim_{\Delta V\rightarrow 0} \frac{\displaystyle\oint_S{\mathbf{v}}\cdot \mathrm{d}\mathbf{a}}{\Delta V} \label{eq:DivDef}
+    \end{equation}
+    % \vspace{0pt}
+    \begin{center}
+        \includegraphics[width=0.5\linewidth]{./figures/fig1.1.pdf} 
+        \captionof{figure}{平行六面体示意图} \label{fig1}
+
+    \end{center}
+    考虑由$P$的微小位移生成的平行六面体(见\cref{fig1}).
+
+    先考虑$\vec e_1$方向对面积分的贡献, 我们有\footnote{在这里请注意, $v_1,H_2,H_3$都是空间中的标量函数, 且在P点导数可能不为零.}
+    \begin{align}
+        \vec e_1\text{方向对面积分的贡献} &= v_1'S_{P_1Q_1QQ_3}-v_1S_{PP_2Q_2P_3} \notag\\
+        &= \left( v_1'H_2'H_3'-v_1H_2H_3 \right) \rmd q_2 \rmd q_3 \notag\\
+        &= \frac{\partial (v_1H_2H_3)}{\partial q_1}\rmd q_1 \rmd q_2 \rmd q_3 
+    \end{align}
+    以同样地方式写出另外两个方向上的贡献, 代入\label{eq:DivDef}, 并利用
+    \begin{equation}
+        \Delta V = H_1H_2H_3\rmd q_1 \rmd q_2 \rmd q_3 
+    \end{equation}
+    在消去$\rmd q_1 \rmd q_2 \rmd q_3 $后得到结果.
+\end{proof}
+
+\begin{theorem}[\textbf{正交}曲线坐标系中的旋度]
+    记$\vec v$在正交曲面坐标系${q_1,q_2,q_3}$中的分量为$(v_1,v_2,v_3)$,则有
+    \begin{align}
+        \nabla \times \vec{v} &= \frac{1}{H_2H_3}\left[\frac{\partial (v_3H_3)}{\partial q_2}-\frac{\partial (v_2H_2)}{\partial q_3}\right]\vec e_1+\frac{1}{H_3H_1}\left[\frac{\partial (v_1H_1)}{\partial q_3}-\frac{\partial (v_3H_3)}{\partial q_1}\right]\vec e_2\notag\\
+        &\quad + \frac{1}{H_1H_2}\left[\frac{\partial (v_2H_2)}{\partial q_1}-\frac{\partial (v_1H_1)}{\partial q_2}\right]\vec e_3
+    \end{align}
+\end{theorem}
+
+\begin{proof}
+    观察\cref{eq:Curl}, 为了得到$\nabla \times \vec{v}$在正交曲面坐标系${q_1,q_2,q_3}$中的各个分量, 我们可以选取特殊的曲面$S$及与之对应的$\partial S$使等式左侧指向$\vec e_1, \vec e_2, \vec e_3$中的一个.
+    
+    仍然参考\cref{fig1}, 我们选取有向曲面$PP_2Q_2P_3P$及其对应的边界, 给出
+    \begin{align}
+        \oint_{\partial S}\vec v \cdot \rmd \vec l &= \left(v_2H_2\mid_{(q_1,q_2,q_3)}-v_2H_2\mid_{(q_1,q_2,q_3+\rmd q_3)}\right)\rmd q_2\notag\\
+        &\quad + \left(v_3H_3\mid_{(q_1,q_2+\rmd q_2,q_3)}-v_3H_3\mid_{(q_1,q_2,q_3)}\right)\rmd q_3\notag\\
+        &=\left[\frac{\partial (v_3H_3)}{\partial q_2}-\frac{\partial (v_2H_2)}{\partial q_3}\right]\rmd q_2 \rmd q_3 
+    \end{align}
+    又有
+    \begin{equation}
+        S = H_2H_3\rmd q_2 \rmd q_3 
+    \end{equation}
+    整理后即得
+    \begin{equation}
+        \left(\nabla \times \vec v \right)_1=\frac{1}{H_2H_3}\left[\frac{\partial (v_3H_3)}{\partial q_2}-\frac{\partial (v_2H_2)}{\partial q_3}\right]
+    \end{equation}
+    同理给出在$\vec e_2,\vec e_3$上的分量并整理即得待证式.
+\end{proof}
+
+\section{特殊函数}
+\epigraph{我不喜欢特殊函数(至少是现在).而且老实说，这已经不是“预备班”的难度了.}{——ZexHexoft\\一名妄图学习电动力学而被特殊函数折磨的大一新生}
+
+以下的所有特殊函数基本都由拉普拉斯方程(参见\cref{eq:Laplace_equation})生成, 故在此先做一介绍.
+
+\begin{theorem}[直角坐标系下的拉普拉斯算子]
+    \begin{equation}
+        \nabla^2 = \frac{\partial ^2}{\partial x^2}+\frac{\partial ^2}{\partial y^2}+\frac{\partial ^2}{\partial z^2}
+    \end{equation}
+\end{theorem}
+
+\begin{theorem}[球坐标系下的拉普拉斯算子]
+    \begin{equation}
+        \nabla^2 = \frac{\partial}{\partial r}\left( r^2\frac{\partial}{\partial r} \right) +\frac{1}{r^2\sin \theta}\frac{\partial}{\partial \theta}\left( \sin \theta \frac{\partial}{\partial \theta} \right) +\frac{1}{r^2\sin ^2\theta}\frac{\partial ^2}{\partial \phi ^2}
+    \end{equation}
+\end{theorem}
+
+
+
 
 接下来的定理要么我在这里补充\footnote{毕竟还没完工}，或者我会在后面的物理中穿插\footnote{按照俞熹老师的话说, 这是“做中学”}.

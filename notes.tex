@@ -1,6 +1,6 @@
 %!LW recipe=latexmk (xelatex)
 \documentclass[12pt, a4paper, oneside]{ctexbook}
-\usepackage{amsmath, amsthm, amssymb, bm, graphicx, hyperref, mathrsfs, epigraph, footnote, cleveref, esint}
+\usepackage{amsmath, amsthm, amssymb, bm, graphicx, hyperref, mathrsfs, epigraph, footnote, cleveref, esint, wrapfig, caption, appendix, microtype}
 \usepackage[backend=biber, style=gb7714-2015]{biblatex}
 
 % \addbibresource{myrefs.bib}
@@ -32,6 +32,7 @@
 
 \renewcommand{\vec}[1]{\mathbf{#1}}
 \newcommand{\uvec}[1]{\hat{\mathbf{#1}}}
+\newcommand{\rmd}{\mathrm{d}}
 
 \crefname{figure}{图}{图}
 \Crefname{figure}{图}{图}
@@ -43,12 +44,30 @@
 \Crefname{theorem}{定理}{定理}
 \crefname{section}{}{}
 \Crefname{section}{}{}
+\crefname{chapter}{}{}
+\Crefname{chapter}{}{}
 
 \crefformat{section}{\textbf{#2#1#3}部分}
-
+\crefformat{chapter}{#2第#1章#3}
 \crefformat{equation}{式#2(#1)#3} % 这里的几个格式非常有趣
 % \crefformat{equation}{#2(#1)#3}
 % \crefformat{equation}{#2式(#1)#3}
+
+\newcommand{\crefpairconjunction}{ 和 }
+\newcommand{\creflastconjunction}{ 和 }
+\newcommand{\crefmiddleconjunction}{、}
+\newcommand{\crefrangeconjunction}{ 至 }
+
+\renewcommand{\appendixname}{附录}
+\renewcommand{\appendixpagename}{附录}
+\renewcommand{\appendixtocname}{附录}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    citecolor=red
+}
 
 \begin{document}
 \pagenumbering{Alph}
@@ -69,7 +88,7 @@
 
 本文目前在\href{https://github.com/ZexHexoft/ElectroDynamicsNotes}{Github}上发布.
 
-注: 目前这篇文档尚未完成, 如有问题烦请各位在 \href{https://github.com/ZexHexoft/ElectroDynamicsNotes/issues}{issue} 中指正.
+注: 目前这篇文档尚未完成，且限于作者水平，难免存在纰漏. 如有问题或建议，烦请各位在 \href{https://github.com/ZexHexoft/ElectroDynamicsNotes/issues}{issue} 中指正.
 
 ~\\
 \begin{flushright}
