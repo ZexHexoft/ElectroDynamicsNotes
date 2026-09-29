@@ -2,10 +2,7 @@
 
 % \epigraph{我知道这是静电学的内容，但我就是要放在这里，你气不气}{——ZexHexoft\\于码字码疯时的话语}
 
-\section{静电场}
-
-
-\subsection{真空中的静电场}
+\section{真空中的静电场}
 
 \begin{definition}[静电场]
     \begin{equation}
@@ -77,9 +74,9 @@
     \end{align}
 \end{theorem}
 
-\subsection{介质中的静电场}
+\section{介质中的静电场}
 
-考虑线性电介质:
+考虑线性电介质\footnote{希望在这里不加介绍地引入电极化矢量不会给读者造成困扰.}:
 
 \begin{theorem}[束缚电荷]
     \begin{gather}
@@ -103,16 +100,63 @@ $$
     \end{equation}
 \end{corollary}
 
-\section{导体}
+我们引入电位移矢量 $\vec{D}$:
 
-我们熟知导体有以下性质：
+\begin{definition}[电位移矢量]
+    \begin{equation}
+        \vec{D} = \varepsilon_0 \vec{E}+\vec{P} =  \varepsilon \vec{E}
+    \end{equation}
+\end{definition}
+
+则有
+\begin{corollary}[介质中的泊松方程]
+    \begin{equation}
+        \nabla \cdot \vec{D} = \rho
+    \end{equation}
+\end{corollary}
+
+\section{唯一性定理与静电镜像法}
+
+我们先介绍两种静电学中常用的边界条件:
 
 \begin{itemize}
-    \item 内部$\vec E = 0$
-    \item 内部$\rho = 0$
-    \item 净电荷只分布在表面
-    \item 是一个等势体
-    \item 电场垂直于导体表面
+    \item 狄利克雷(Dirichlet)边界条件: 已知静电势在边界 $S$上的取值.
+    \item 诺伊曼(Neumann)边界条件: 已知静电势在边界 $S$法向偏微商的取值.
 \end{itemize}
 
+接下来我们给出在这两种边界条件下的唯一性定理:
 
+\begin{theorem}[静电唯一性定理] 
+    在狄利克雷(Dirichlet)边界条件或诺伊曼(Neumann)边界条件下, 静电边值问题的解是唯一的.
+\end{theorem}
+
+\begin{proof}
+    取区域内满足泊松方程的两个连续函数解 $\Phi_1, \Phi_2$, 我们定义 $\Psi = \Phi_1 - \Phi_2$
+    从而在区域内满足
+    $$
+    \nabla ^2\Psi = 0
+    $$
+    在边界上满足
+    \begin{align*}
+        &\Psi = 0,\quad \text{(Dirichlet)}\\
+        &\frac{\partial \Psi}{\partial n} = 0,\quad \text{(Neumann)}
+    \end{align*}
+    考虑恒等式
+    $$
+    \nabla \cdot \left( \Psi \nabla \Psi\right) = \left( \nabla \Psi \right) ^2 + \Psi\nabla^2 \Psi 
+    $$
+    因而有
+    \begin{align*}
+        \int_V \mathrm{d}^3 \vec{x}\left( \nabla \Psi \right)^2 &= \oint_S \Psi \left( \nabla \Psi\right)\cdot \mathrm{d}\vec{S} - \int_V\mathrm{d}^3\vec{x}\Psi\nabla^2 \Psi \\
+        &= \oint_S \Psi \left(\frac{\partial \Psi}{\partial n}\right)\mathrm{d}S - \int_V\mathrm{d}^3\vec{x}\Psi\nabla^2 \Psi \\
+    \end{align*}
+    在两种边界条件下，右侧均为零.因此我们有
+    $$
+    \nabla \Psi = 0
+    $$
+    从而在区域内有
+    $$
+    \Psi = Const.
+    $$
+    即$\Phi_1, \Phi_2$最多相差一个常数, 在经典条件下对产生的电场没有影响, 即此时静电边值问题的解是唯一的.
+\end{proof}

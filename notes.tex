@@ -3,6 +3,16 @@
 \usepackage{amsmath, amsthm, amssymb, bm, graphicx, hyperref, mathrsfs, epigraph, footnote, cleveref, esint, wrapfig, caption, appendix, microtype}
 \usepackage[backend=biber, style=gb7714-2015]{biblatex}
 
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{0.5\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
 % \addbibresource{myrefs.bib}
 \addbibresource{recommend.bib}
 
