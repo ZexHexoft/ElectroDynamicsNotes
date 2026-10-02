@@ -124,23 +124,37 @@ $$
     \item 诺伊曼(Neumann)边界条件: 已知静电势在边界 $S$法向偏微商的取值.
 \end{itemize}
 
-接下来我们给出在这两种边界条件下的唯一性定理:
+接下来我们给出在这三种边界条件下的唯一性定理:
 
 \begin{theorem}[静电唯一性定理] 
-    在狄利克雷(Dirichlet)边界条件或诺伊曼(Neumann)边界条件下, 静电边值问题的解是唯一的.
+    考虑一个区域 $V$(可能有导体存在)中有给定的电荷密度 $\rho$, 如果每一个导体的总电荷已经给定, 在狄利克雷(Dirichlet)边界条件或诺伊曼(Neumann)边界条件下, 静电边值问题的解是唯一的.
 \end{theorem}
 
+\begin{center}
+    \incfig{唯一性定理}
+    \captionof{figure}{} \label{fig2}
+\end{center}
+
 \begin{proof}
-    取区域内满足泊松方程的两个连续函数解 $\Phi_1, \Phi_2$, 我们定义 $\Psi = \Phi_1 - \Phi_2$
-    从而在区域内满足
+    由于我们不关心导体内部的电势, 我们下面按\cref{fig2}中虚线表示的空间和表面积分.
+
+    取区域内满足泊松方程的两个连续函数解 $\Phi_1, \Phi_2$, 我们定义 $\Psi = \Phi_1 - \Phi_2$, 其在区域内满足
     $$
     \nabla ^2\Psi = 0
     $$
-    在边界上满足
+    在不与导体接壤的边界上满足
     \begin{align*}
         &\Psi = 0,\quad \text{(Dirichlet)}\\
         &\frac{\partial \Psi}{\partial n} = 0,\quad \text{(Neumann)}
     \end{align*}
+    对于与导体 $C$接壤的边界, 我们有
+    $$
+    \Psi = \Phi_1 - \Phi_2 = c = Const.
+    $$
+    同时由于导体所带电量恒定, 我们有
+    $$
+    \oint_C \frac{\partial \Psi}{\partial n}\mathrm{d}S = 0
+    $$
     考虑恒等式
     $$
     \nabla \cdot \left( \Psi \nabla \Psi\right) = \left( \nabla \Psi \right) ^2 + \Psi\nabla^2 \Psi 
@@ -159,4 +173,68 @@ $$
     \Psi = Const.
     $$
     即$\Phi_1, \Phi_2$最多相差一个常数, 在经典条件下对产生的电场没有影响, 即此时静电边值问题的解是唯一的.
+\end{proof}
+
+唯一性定理给予了我们给出"猜测解"的可能性, 对这一定理最为熟知的应用应该是静电镜像法.
+
+经典镜像法的基本原理是: 在所求区域之外引入适当的镜像电荷分布，使原问题在边界上的条件（如导体表面等势、导体总电荷给定等）得到满足，同时保持区域内真实电荷分布不变. 由唯一性定理，区域内的电场唯一，因此该构造给出的电场就是原问题的解.
+
+需要注意，镜像电荷必须放在所求区域之外，否则会改变区域内的源分布: 若导体是绝缘且带给定总电荷，还需检查或附加镜像以满足总电荷条件.
+
+在此我们不展示常见的例子(无限大导体平面、接地导体球等), 我们给出一个来自Jackson电动力学的有趣例子
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{./figures/method_of_image.pdf}
+    \caption{导体球在均匀电场中的极化}\label{fig:method_of_image}
+\end{figure}
+
+\begin{example}
+    考虑如\cref{fig:method_of_image}的构型, 设导体电势为 $0$, 我们使用电像法证明此时空间中的电势分布为
+    \begin{equation}
+        \Phi = -E_0(r-\frac{a^3}{r^2})\cos \theta  \quad (r>a)
+    \end{equation}
+\end{example}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{./figures/method_of_image_a.pdf}
+    \caption{由位于无穷远处的异种电荷生成的匀强电场}\label{fig:method_of_image_a}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{./figures/method_of_image_b.pdf}
+    \caption{应用镜像法后}\label{fig:method_of_image_b}
+\end{figure}
+
+
+\begin{proof}
+    参考\cref{fig:method_of_image_a}, 对于 $R\gg 1$我们可以估计
+    \begin{equation}
+        E_0 \simeq \frac{2Q}{4\pi\varepsilon_0 R^2} \label{eq:image_1}
+    \end{equation}
+    在保证 $Q/R^2$不变的情况下令$R\to \infty$, 则上式变为等式, 即该构型可以生成匀强电场.
+
+    从而我们应用接地导体球关于电像法的经典结论(见\cref{fig:method_of_image_b})给出
+    \begin{equation}
+        \begin{split}
+            \Phi &= \frac{Q/4\pi\varepsilon_0}{(r^2+R^2+2rR\cos\theta)^{1/2}}
+            -\frac{Q/4\pi\varepsilon_0}{(r^2+R^2-2rR\cos\theta)^{1/2}}\\
+            &\quad -\frac{aQ/4\pi\varepsilon_0}{R\left(r^2+\displaystyle \frac{a^4}{R^2}+\displaystyle \frac{2a^2r}{R^2}\cos\theta\right)^{1/2}}
+            + \frac{aQ/4\pi\varepsilon_0}{R\left(r^2+\displaystyle \frac{a^4}{R^2}-\displaystyle \frac{2a^2r}{R^2}\cos\theta\right)^{1/2}}
+        \end{split}
+    \end{equation}
+
+    依照这个构型, 我们有 $a < r \ll R$以及 $Q \sim R^2$, 从而我们写出
+
+    \begin{equation}
+        \Phi = \frac{1}{4\pi\varepsilon_0}\left( -\frac{2Q}{R^2}r\cos\theta+\frac{2Q}{R^2}\frac{a^3}{r^2}\cos\theta \right) 
+    \end{equation}
+
+    进而利用\cref{eq:image_1}给出
+
+    \begin{equation}
+        \Phi = -E_0\left( r-\frac{a^3}{r^2} \right)\cos\theta 
+    \end{equation}
 \end{proof}
