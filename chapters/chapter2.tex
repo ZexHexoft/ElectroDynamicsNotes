@@ -124,16 +124,17 @@ $$
     \item 诺伊曼(Neumann)边界条件: 已知静电势在边界 $S$法向偏微商的取值.
 \end{itemize}
 
-接下来我们给出在这三种边界条件下的唯一性定理:
+接下来我们给出在这两种边界条件下的唯一性定理:
 
 \begin{theorem}[静电唯一性定理] 
     考虑一个区域 $V$(可能有导体存在)中有给定的电荷密度 $\rho$, 如果每一个导体的总电荷已经给定, 在狄利克雷(Dirichlet)边界条件或诺伊曼(Neumann)边界条件下, 静电边值问题的解是唯一的.
 \end{theorem}
 
-\begin{center}
+\begin{figure}
+    \centering
     \incfig{唯一性定理}
-    \captionof{figure}{} \label{fig2}
-\end{center}
+    \caption{} \label{fig2}
+\end{figure}
 
 \begin{proof}
     由于我们不关心导体内部的电势, 我们下面按\cref{fig2}中虚线表示的空间和表面积分.
@@ -216,7 +217,7 @@ $$
     \end{equation}
     在保证 $Q/R^2$不变的情况下令$R\to \infty$, 则上式变为等式, 即该构型可以生成匀强电场.
 
-    从而我们应用接地导体球关于电像法的经典结论(见\cref{fig:method_of_image_b})给出
+    从而我们应用接地导体球关于电像法的经典结论(见\cref{fig:method_of_image_b})给出\footnote{两个距离无限小的异种电荷, 很容易让人联想到电偶极子的定义. 从这个角度看, 下面的公式就变得显然了.}
     \begin{equation}
         \begin{split}
             \Phi &= \frac{Q/4\pi\varepsilon_0}{(r^2+R^2+2rR\cos\theta)^{1/2}}

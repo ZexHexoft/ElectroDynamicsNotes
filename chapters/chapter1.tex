@@ -425,6 +425,7 @@ $$
 
 以下的所有特殊函数基本都可以在求解拉普拉斯方程(参见\cref{eq:Laplace_equation})的过程中生成.
 
+\subsection{球坐标下的拉普拉斯方程}
 \begin{theorem}[球坐标系下的拉普拉斯算子]
     \begin{equation}
         \nabla^2 = \frac{1}{r^2}\frac{\partial}{\partial r}\left( r^2\frac{\partial}{\partial r} \right) +\frac{1}{r^2\sin \theta}\frac{\partial}{\partial \theta}\left( \sin \theta \frac{\partial}{\partial \theta} \right) +\frac{1}{r^2\sin ^2\theta}\frac{\partial ^2}{\partial \phi ^2}
@@ -476,19 +477,152 @@ $$
 由于$\cos \theta$在我们感兴趣的区间内与$\theta$一一对应, 我们在这里令$\Theta(\theta) = P(x)$, 其中$x=\cos \theta$.
 
 代入\cref{eq:Laplace1_theta}并变形, 我们有
+
+\begin{definition}[连带勒让德方程]
+    \begin{equation}
+        \frac{\rmd}{\rmd x}\left((1-x^2)\frac{\rmd P}{\rmd x}\right)+\left(l(l+1)-\frac{m^2}{1-x^2}\right)P(x)=0 \label{eq:AssociatedLegendreEquation}
+    \end{equation}
+\end{definition}
+
+对于$m=0$(对应系统关于$\phi$对称)的情形, \cref{eq:AssociatedLegendreEquation}退化为
+
+\begin{definition}[勒让德方程]
+    \begin{equation}
+        \frac{\rmd}{\rmd x}\left((1-x^2)\frac{\rmd P}{\rmd x}\right)+l(l+1)P(x)=0\label{eq:LegendreEquation}
+    \end{equation}
+\end{definition}
+
+\subsection{勒让德方程和勒让德多项式}
+
+由于在物理中我们关心的项是 $P(\cos\theta)$, 我们希望我们得到的勒让德方程(\cref{eq:LegendreEquation})的解 $P(x)$在区间 $-1\le x\le 1$上单值, 有限, 连续.
+
+假设解具有如下幂级数的形式
+
 \begin{equation}
-    \frac{\rmd}{\rmd x}\left((1-x^2)\frac{\rmd P}{\rmd x}\right)+\left(l(l+1)-\frac{m^2}{1-x^2}\right)P(x)=0 \label{eq:AssociatedLegendreEquation}
+    P(x) = x^\alpha\sum_{j=0}^{\infty} a_j x^j\label{eq:LegendreEquationAssumption}
 \end{equation}
 
-\cref{eq:AssociatedLegendreEquation}被称为连带勒让德方程.
-
-对于$m=0$(对应系统关于$\phi$对称)的情形, 方程\cref{eq:AssociatedLegendreEquation}退化为
-
+代入\cref{eq:LegendreEquation}得到
 \begin{equation}
-    \frac{\rmd}{\rmd x}\left((1-x^2)\frac{\rmd P}{\rmd x}\right)+l(l+1)P(x)=0\label{eq:LegendreEquation}
+    \sum_{j=0}^{\infty} \{(\alpha+j)(\alpha+j-1)a_jx^{\alpha+j-2}-[(\alpha+j)(\alpha+j+1)-l(l+1)]a_jx^{\alpha+j}\} = 0\label{eq:LegendreEquationS0}
 \end{equation}
 
-\cref{eq:LegendreEquation}被称为勒让德方程.
+这个式子中关于 $x$的每个幂次都必须精确消失, 对于 $j=0,1$的特殊情况有
+\begin{equation}
+    \begin{split}
+        \left. 
+        \begin{array}{r}
+            \text{若}a_0\ne 0, \alpha \left( \alpha -1 \right) =0\\
+            \text{若}a_1\ne 0, \alpha \left( \alpha +1 \right) =0\\
+        \end{array} 
+        \right\} 
+    \end{split}\label{eq:LegendreEquationS1}
+\end{equation}
+
+对于一般情形则有
+\begin{equation}
+    a_{j+2} = \left[ \frac{(\alpha+j)(\alpha+j+1)-l(l+1)}{(\alpha+j+1)(\alpha+j+2)} \right]a_j \label{eq:LegendreEquationS2}
+\end{equation}
+
+事实上, 我们可以注意到\cref{eq:LegendreEquationS1}的两个条件实际上是等价的(自己枚举一下, 记得和\cref{eq:LegendreEquationS2}一起看).
+
+因此, 无论取 $a_0=0$还是 $a_1=0$都能生成我们所需的解.
+
+对于前者, 我们有 $\alpha = 0$(生成偶数次项)或者 $\alpha = 1$(生成奇数次项).
+
+对这两种情况, 我们可以证明如下两个性质
+\begin{itemize}
+    \item 无论 $l$的数值, 级数在 $x^2<1$处收敛.
+    \item 级数在 $x^2=1$处发散, 除非它在某一处被截断.
+\end{itemize}
+
+显然, 如果 $l$为偶数(奇数), 则只有当$\alpha=0$($\alpha=1$)时级数才会截断, 此时级数的最高次幂是 $x^l$.
+
+在将这些级数在 $x=1$处的取值归一化后, 我们得到了勒让德多项式 $P_l(x)$.
+
+\begin{equation}
+    \left.
+        \begin{array}{l}
+            P_0(x) = 1\\
+            P_1(x) = x\\
+            P_2(x) = \frac{1}{2}(3x^{2}-1)\\
+            P_3(x) = \frac{1}{2}(5x^3-3x)\\
+            P_4(x) = \frac{1}{8}(35x^4-30x+3)\\
+        \end{array}
+    \right\}
+\end{equation}
+
+对\cref{eq:LegendreEquationAssumption}和\cref{eq:LegendreEquationS2}进行一些分析, 可以得到Rodrigues公式.
+
+\begin{theorem}[Rodrigues公式]
+    \begin{equation}
+        P_l(x) = \frac{1}{2^ll!}\frac{\mathrm{d}^l}{\mathrm{d}x^l}(x^2-1)^l \label{eq:RodriguesFormula}
+    \end{equation}
+\end{theorem}
+
+我们下面讨论一些勒让德多项式的性质.
+\begin{theorem}
+    勒让德多项式是 $-1\le x\le 1$上的完备正交多项式, 且有
+    \begin{equation}
+        \int_{-1}^1 [P_l(x)]^2 \mathrm{d}x = \frac{2}{2l+1}
+    \end{equation}
+\end{theorem}
+
+\begin{proof}
+    完备性我不会证,正交性到是可以写上一通.
+
+    由\cref{eq:LegendreEquation}, 我们有
+    \begin{equation}
+        \int_{-1}^1 P_{l'}(x)\left\{ \frac{\mathrm{d}}{\mathrm{d}x}\left[ (1-x^2)\frac{\mathrm{d}P_l}{\mathrm{d}x}\right] +l(l+1)P_l(x) \right\}  \mathrm{d}x = 0
+    \end{equation}
+
+    对第一项分部积分
+    \begin{equation}
+        \int_{-1}^1 \left[(x^2-1)\frac{\mathrm{d}P_l}{\mathrm{d}x}\frac{\mathrm{d}P_{l'}}{\mathrm{d}x} +l(l+1)P_l(x)P_{l'}(x) \right] \mathrm{d}x = 0
+    \end{equation}
+
+    将 $l,l'$互换并减去上式有
+    \begin{equation}
+        \left[ l(l+1) - l'(l'+1) \right] \int_{-1}^1 P_l(x)P_{l'}(x) \mathrm{d}x = 0
+    \end{equation}
+
+    从而得到正交性.
+
+    利用\cref{eq:RodriguesFormula}, 我们给出
+    \begin{equation}
+        N_l\equiv \int_{-1}^1 [P_l(x)]^2 \mathrm{d}x =\frac{1}{2^{2l}(l!)^2}\int_{-1}^1 \frac{\mathrm{d}^l}{\mathrm{d}x^l}(x^2-1)^l\frac{\mathrm{d}^l}{\mathrm{d}x^l}(x^2-1)^l\mathrm{d}x
+    \end{equation}
+
+    做 $l$次分部积分后有\footnote{我断言分离中的常数部分总有因式 $x^2-1$, 因此可以消去, 你可以证明一下.}
+    \begin{equation}
+        N_l =\frac{(-1)^l}{2^{2l}(l!)^2}\int_{-1}^1 (x^2-1)^l\frac{\mathrm{d}^{2l}}{\mathrm{d}x^{2l}}(x^2-1)^l\mathrm{d}x
+    \end{equation}
+
+    其中对 $(x^2-1)^l$的$2l$次求导显然只与其最高次项有关, 给出 $(2l)!$, 从而
+    \begin{equation}
+        N_l =\frac{(2l)!}{2^{2l}(l!)^2}\int_{-1}^1 (1-x^2)^l\mathrm{d}x
+    \end{equation}
+
+    利用
+    $$
+    (1-x^2)^l = (1-x^2)^{l-1}+\frac{x}{2l}\frac{\mathrm{d}}{\mathrm{d}x}(1-x^2)^l
+    $$
+
+    我们给出
+    \begin{equation}
+        N_l = \left( \frac{2l-1}{2l} \right)N_{l-1} + \frac{1}{2l}N_l 
+    \end{equation}
+
+    从而 
+    \begin{equation}
+        (2l+1)N_l = (2l-1)N_{l-1}
+    \end{equation}
+
+    最终导出
+    \begin{equation}
+        N_l = \frac{2}{2l+1}
+    \end{equation}
+\end{proof}
 
 接下来的内容由于笔者功力不足, 暂且搁笔. 
 
